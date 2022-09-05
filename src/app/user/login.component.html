@@ -1,0 +1,26 @@
+<h1>Login</h1>
+<hr>
+<div class="col-md-4">
+  <form autocomplete="off" #form="ngForm" (ngSubmit)="login(form.value)">
+    <div class="form-group mt-3">
+      <label for="userName">User Name: </label>
+      <em *ngIf="(form?.controls?.['userName']?.touched || mouseoverLogin)&& form?.controls?.['userName']?.invalid" class="text-danger"> is Required</em>
+      <input id="userName" required type="text" [(ngModel)]="userName" name="userName" class="form-control"
+      placeholder="User Name..." />
+    </div>
+    <div class="form-group mt-3 mb-3">
+      <label for="password">Password: </label>
+      <em *ngIf="(form?.controls?.['password']?.touched || mouseoverLogin) && form?.controls?.['password']?.invalid" class="text-danger"> is Required</em>
+      <input id="password" required type="password" [(ngModel)]="password" name="password" class="form-control"
+        placeholder="Password..." />
+    </div>
+
+    <span
+    (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false"
+    >
+      <button type="submit" [disabled]="!form.valid" class="btn btn-primary"
+      >Login</button>
+    </span>
+    <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
+  </form>
+</div>
